@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -6,7 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
 </head>
+
 <body>
+    <?php
+        include 'connexion.php';
+
+        if (isset($_GET["error"])){
+            if ($_GET["error"] == 'login'){
+                echo("<script>alert(\"Ce login existe déjà.\")</script>");
+            } else if ($_GET["error"] == 'incomplete'){
+                echo("<script>alert(\"Vous n'avez pas rempli tous les champs.\")</script>");
+            }
+            else {
+                echo("<script>alert(\"Les mots de passe que vous avez insérer sont différents.\")</script>");
+            }
+        }
+    ?>
+    
     <form action="traite_inscription.php" method="GET">
         <h1>Inscription</h1>
         <label for="login">Login</label>
@@ -15,8 +32,12 @@
         <label for="mdp">Mot de passe</label>
         <input type="password" name="mdp"><br>
 
+        <label for="mdp_check">Mot de passe</label>
+        <input type="password" name="mdp_check"><br>
+
         <input type="submit" value="S'inscrire">
     </form>
 
 </body>
+
 </html>

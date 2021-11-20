@@ -21,22 +21,15 @@
         
         if (isset($_GET["login"])) {
             if($resultat == false){
-
                 header('Location:login.php?error=login');
 
             } else {
-
                 if (password_verify($_GET["mdp"], $resultat["mdp"])) {
 
-                    // echo "<p>Utilisateur {$resultat["id_utilisateur"]} :\n
-                    // login : {$resultat["login"]}<br>\n
-                    // mdp : {$resultat["mdp"]}<br>";
-
-                    // $_SESSION["login"] = $resultat["id_utilisateur"].$resultat["nom"];
+                    $_SESSION["login"] = $resultat["id_utilisateur"];
                     // echo $_SESSION["login"];
-                    echo "Vous êtes bien connecté !";
-
-                    } else {
+                    header('Location:accueil.php');
+                } else {
 
                     header('Location:login.php?error=mdp');
                 }
