@@ -21,6 +21,9 @@
         button{
             margin-left:25%;
         }
+        form{
+            margin-left:30%;
+        }
         .com{
             display: none;
             margin-left:25%;
@@ -44,6 +47,11 @@
         </section>";
 
     ?>
+     <form action="" method="GET">
+        <h4>Poster mon commentaire</h4>
+      <textarea name="commentaire" rows="10" cols="50" placeholder="Ecrire le commentaire"></textarea><br><br>
+      <input type="submit" value="Poster mon commentaire" style="display:block"><br><br>
+    </form>
     <button> Commentaires </button>
     <section class="commentaires">
         <div class="com" id="1">Whaa le PHP c'est génial, j'aimerais bien voir une démonstration ! </div>
