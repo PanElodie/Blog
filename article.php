@@ -18,8 +18,12 @@
         h2, h3{
             margin-left:65%;
         }
+        button{
+            margin-left:25%;
+        }
         .com{
             display: none;
+            margin-left:25%;
         }
     </style>
 </head>
