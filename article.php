@@ -18,19 +18,13 @@
         h2, h3{
             margin-left:65%;
         }
+        .com{
+            display: none;
+        }
     </style>
 </head>
 
 <body>
-    <!-- <h1>Qu'est ce que le php ?</h1>
-    <h2> le 18/11/2021 </h2>
-    <p>PHP (officiellement, ce sigle est un acronyme récursif pour PHP Hypertext Preprocessor) est un langage de scripts généraliste et Open Source, spécialement conçu pour le développement d'applications web. Il peut être intégré facilement au HTML.</p>
-
-    <p>Ce qui distingue PHP des langages de script comme le Javascript, est que le code est exécuté sur le serveur, générant ainsi le HTML, qui sera ensuite envoyé au client. Le client ne reçoit que le résultat du script, sans aucun moyen d'avoir accès au code qui a produit ce résultat. Vous pouvez configurer votre serveur web afin qu'il analyse tous vos fichiers HTML comme des fichiers PHP. Ainsi, il n'y a aucun moyen de distinguer les pages qui sont produites dynamiquement des pages statiques.</p>
-
-    <p>Le grand avantage de PHP est qu'il est extrêmement simple pour les néophytes, mais offre des fonctionnalités avancées pour les experts. Ne craignez pas de lire la longue liste de fonctionnalités PHP. Vous pouvez vous plonger dans le code, et en quelques instants, écrire des scripts simples.</p>
-    
-    <h3>écrit par MJ </h3> -->
 
     <?php
         include 'connexion.php';
@@ -46,7 +40,22 @@
         </section>";
 
     ?>
-    <section class="commentaires"></section>
+    <button> Commentaires </button>
+    <section class="commentaires">
+        <div class="com" id="1">Whaa le PHP c'est génial, j'aimerais bien voir une démonstration ! </div>
+        <div class="com" id="1">Quels sont les désavantages du php ?</div>
+        <div class="com" id="2">C'est quoi une base de données ?</div>
+        <div class="com" id="3"> Le therme "d'autres langages" est évoqué mais qui sont-ils ?</div>
+        <div class="com" id="3">Très bon article, merci pour ses informations.</div>
+    </section>
+    <script>
+  var c = document.querySelector("button");
+  c.addEventListener("click", a => {
+  document.querySelectorAll(".com").forEach(e=>{
+  e.style.display="block";
+  })
+  });
+</script>
 </body>
 
 </html>
