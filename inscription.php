@@ -10,7 +10,7 @@
 
 <body>
     <?php
-        include 'connexion.php';
+        include 'db_link.php';
 
         if (isset($_GET["error"])){
             if ($_GET["error"] == 'login'){
@@ -19,7 +19,7 @@
                 echo("<script>alert(\"Vous n'avez pas rempli tous les champs.\")</script>");
             }
             else {
-                echo("<script>alert(\"Les mots de passe que vous avez insérer sont différents.\")</script>");
+                echo("<script>alert(\"Les mots de passe que vous avez insérés sont différents.\")</script>");
             }
         }
     ?>

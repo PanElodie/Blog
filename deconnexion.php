@@ -1,0 +1,1 @@
+<?= "<button style='position:absolute;top:0;right:0;' class='deconnexion'>Se déconnecter</button>" ?>

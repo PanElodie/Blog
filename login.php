@@ -10,7 +10,7 @@
 </head>
 <body>
     <?php
-           include 'connexion.php';
+           include 'db_link.php';
 
             if (isset($_GET["error"])){
                 if (($_GET["error"] == 'login')){

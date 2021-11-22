@@ -13,7 +13,7 @@
 <body>
 
     <?php
-        include 'connexion.php';
+        include 'db_link.php';
 
         $req1 = "SELECT * FROM utilisateur WHERE login = ?";
         $verif = $db -> prepare($req1);
@@ -44,13 +44,12 @@
                     $stmt->bindParam(':mdp',$hash , PDO::PARAM_STR); 
                     $stmt->execute();
 
-                    // SESSIIOOONNN ???
 
-                    // $req3 = "SELECT id_utilisateur FROM utilisateur WHERE "
+                    // $req3 = "SELECT * FROM utilisateur DESC LIMIT 1"
                     // $_SESSION["login"] = $resultat["id_utilisateur"].$resultat["nom"];
                     // echo $_SESSION["login"];
                     echo "L'inscription s'est bien déroulée<br>";
-                    echo '<a href="accueil.php">Se diriger vers le blog</a>';
+                    echo '<a href="login.php">Se  connecter</a>';
                 }
             }
         } 

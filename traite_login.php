@@ -10,7 +10,7 @@
 </head>
 <body>
     <?php 
-        include 'connexion.php';
+        include 'db_link.php';
         $requete = "SELECT * FROM utilisateur WHERE `login` = ?";
 
         $stmt = $db -> prepare($requete);
@@ -26,8 +26,8 @@
             } else {
                 if (password_verify($_GET["mdp"], $resultat["mdp"])) {
 
-                    $_SESSION["login"] = $resultat["id_utilisateur"];
-                    // echo $_SESSION["login"];
+                    $_SESSION["id"] = $resultat["id_utilisateur"];
+                    $_SESSION["login"] = $resultat["login"];
                     header('Location:accueil.php');
                 } else {
 

@@ -12,7 +12,7 @@
     <div>
         <p>Bienvenue</p>
         <?php 
-            include 'connexion.php';
+            include 'db_link.php';
             $requete = "SELECT * FROM billet";
             $stmt = $db -> query($requete);
             $results = $stmt -> fetchAll(PDO::FETCH_ASSOC);
@@ -22,6 +22,14 @@
                 <a href='article.php?id=". $result["id_billet"]."'>{$result["titre"]}</a>
                 </div>";
             }
+            echo $_SESSION["id"];
+            if ($_SESSION["id"] == NULL){
+                header('Location:login.php');
+            }
+            if($_SESSION["id"] == 1 && $_SESSION["login"] == 'admin'){
+                echo '<a href="post_billet.php">Poster un nouvel article</a>';
+            }
+
         ?>
     </div>
 </body>

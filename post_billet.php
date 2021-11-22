@@ -7,7 +7,15 @@
     <title>Billet</title>
 </head>
 <body>
-   <form action="" method="GET">
+    <?php 
+        include 'db_link.php';
+        if (isset($_GET["error"])){
+            if ($_GET["error"] == "incomplete"){
+                echo "Vous n'avez pas rempli tous les champs.";
+            }
+        }
+    ?>
+   <form action="traite_billet.php" method="GET">
         <h1>Je remplis et je post !</h1>
       <input type="text" name="titre" placeholder="Titre de l'article"><br><br>
       <textarea name="contenu" rows="10" cols="50" placeholder="Contenu de l'article"></textarea><br><br>
