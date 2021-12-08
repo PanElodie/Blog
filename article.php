@@ -70,6 +70,8 @@
             
             foreach($commentaires as $commentaire){
                 echo "<div class='com'>{$commentaire["texte"]}</div>";
+                echo  "<div class='com'>{$commentaire["date"]}</div>";
+                echo  "<div class='com'>{$commentaire["login"]}</div>";
             }
 
             if (isset($_SESSION["id"])){
