@@ -71,7 +71,10 @@
             foreach($commentaires as $commentaire){
                 echo "<div class='com'>{$commentaire["texte"]}</div>";
                 echo  "<div class='com'>{$commentaire["date"]}</div>";
-                echo  "<div class='com'>{$commentaire["login"]}</div>";
+                $reqLog = "SELECT * FROM utilisateur WHERE id_utilisateur = {$commentaire["ext_utilisateur"]}";
+                $stmt = $db -> query($reqLog);
+                $login = $stmt -> fetch(PDO::FETCH_ASSOC);
+                echo  "<div class='com'>{$login["login"]}</div>";
             }
 
             if (isset($_SESSION["id"])){
