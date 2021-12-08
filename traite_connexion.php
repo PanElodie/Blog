@@ -21,7 +21,7 @@
         
         if (isset($_GET["login"])) {
             if($resultat == false){
-                header('Location:login.php?error=login');
+                header('Location:connexion.php?error=login');
 
             } else {
                 if (password_verify($_GET["mdp"], $resultat["mdp"])) {
@@ -31,7 +31,7 @@
                     header('Location:accueil.php');
                 } else {
 
-                    header('Location:login.php?error=mdp');
+                    header('Location:connexion.php?error=mdp');
                 }
             }
         }

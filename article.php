@@ -6,56 +6,61 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Billet</title>
     <style>
-        h1{
+        h1 {
             text-align: center;
         }
-        p{
-            width:50%;
-            margin-left:25%;
+
+        p {
+            width: 50%;
+            margin-left: 25%;
         }
-        h2, h3{
-            margin-left:65%;
+
+        h2,
+        h3 {
+            margin-left: 65%;
         }
-        button{
-            margin-left:25%;
+
+        button {
+            margin-left: 25%;
         }
-        form{
-            margin-left:30%;
+
+        form {
+            margin-left: 30%;
         }
-        .com{
+
+        .com {
+            margin-left: 25%;
+        }
+
+        .commentaires {
             display: none;
-            margin-left:25%;
         }
     </style>
 </head>
 
 <body>
-
+    <a href="accueil.php">Retour</a>
     <?php
         include 'db_link.php';
-        if (isset($_GET["id"])){
-            $article = $_GET["id"];
+        include 'bouton_co_deco.php';
+        
+        if (isset($_GET["id_article"])){
+            $article = $_GET["id_article"];
             $reqArticle = "SELECT * FROM billet WHERE id_billet = $article";
             $stmt = $db -> query($reqArticle);
             $result = $stmt -> fetch(PDO::FETCH_ASSOC);
-    
+            
+            // COMMENT REMPLACER "ENTER" AVEC BR???
             echo "<section class='article'>\n
             <h1>{$result["titre"]}</h1>\n
-            {$result["contenu"]}\n
+            <p>{$result["contenu"]}</p>\n
             <p>Publié le {$result["date"]} </p>\n
             </section>";
-       
-
     ?>
-    
-   
-    <form action="" method="GET">
-        <h4>Poster mon commentaire</h4>
-      <textarea name="commentaire" rows="10" cols="50" placeholder="Ecrire le commentaire"></textarea><br><br>
-      <input type="submit" value="Poster mon commentaire" style="display:block"><br><br>
-    </form>
+
     <button> Commentaires </button>
     <section class="commentaires">
         <?php 
@@ -67,23 +72,31 @@
                 echo "<div class='com'>{$commentaire["texte"]}</div>";
             }
 
+            if (isset($_SESSION["id"])){
+                echo ("<form action='traite_commentaire.php' method='GET'>\n
+                <h4>Poster mon commentaire</h4>\n
+                <textarea name='commentaire' rows='10' cols='50' placeholder='Ecrire le commentaire'></textarea><br><br>\n
+                <input type='submit' value='Poster mon commentaire' style='display:block'><br><br>\n
+                <input type='hidden' name='id_article' value='". $article ."'>\n
+                </form>");
+            } else {
+                echo "<p>Pour poster un commentaire, <a href='connexion.php'>se connecter</a></p>";
+            }
         };
+       
         ?>
-        <!-- <div class="com" id="1">Whaa le PHP c'est génial, j'aimerais bien voir une démonstration ! </div>
-        <div class="com" id="1">Quels sont les désavantages du php ?</div>
-        <div class="com" id="2">C'est quoi une base de données ?</div>
-        <div class="com" id="3"> Le therme "d'autres langages" est évoqué mais qui sont-ils ?</div>
-        <div class="com" id="3">Très bon article, merci pour ses informations.</div> -->
+
     </section>
     <script>
-        
-  var c = document.querySelector("button");
-  c.addEventListener("click", a => {
-  document.querySelectorAll(".com").forEach(e=>{
-  e.style.display="block";
-  })
-  });
-</script>
+        document.querySelector("button").addEventListener("click", () => {
+            var com = document.querySelector('.commentaires');
+            if (com.style.display == "block") {
+                com.style.display = "none";
+            } else {
+                com.style.display = "block";
+            }
+        });
+    </script>
 </body>
 
 </html>

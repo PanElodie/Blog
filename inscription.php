@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Inscription</title>
 </head>
 
@@ -23,21 +24,23 @@
             }
         }
     ?>
-    
+
+    <h1>Inscription</h1>
+
     <form action="traite_inscription.php" method="GET">
-        <h1>Inscription</h1>
         <label for="login">Login</label>
-        <input type="text" name="login"><br>
+        <input type="text" name="login" autocomplete="username"><br>
 
         <label for="mdp">Mot de passe</label>
-        <input type="password" name="mdp"><br>
+        <input type="password" name="mdp" autocomplete="new-password"><br>
 
         <label for="mdp_check">Mot de passe</label>
-        <input type="password" name="mdp_check"><br>
+        <input type="password" name="mdp_check" autocomplete="new-password"><br>
 
         <input type="submit" value="S'inscrire">
     </form>
-
+    
+    <a href="connexion.php">J'ai déjà un compte</a>
 </body>
 
 </html>

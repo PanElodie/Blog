@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Vous êtes connecté</title>
 </head>
 
@@ -44,18 +45,25 @@
                     $stmt->bindParam(':mdp',$hash , PDO::PARAM_STR); 
                     $stmt->execute();
 
+                    // INSCRIPTION EN TANT QUE CONNEXION
+                    $req3 = "SELECT * FROM utilisateur ORDER BY id_utilisateur DESC LIMIT 1";
+                    $stmt_login = $db -> query($req3);
+                    $resultat = $stmt_login -> fetch(PDO::FETCH_ASSOC);
+                    $_SESSION["login"] = $resultat["login"];
+                    $_SESSION["id"] = $resultat["id_utilisateur"];
 
-                    // $req3 = "SELECT * FROM utilisateur DESC LIMIT 1"
-                    // $_SESSION["login"] = $resultat["id_utilisateur"].$resultat["nom"];
-                    // echo $_SESSION["login"];
-                    echo "L'inscription s'est bien déroulée<br>";
-                    echo '<a href="login.php">Se  connecter</a>';
+                    echo "<h1>Bienvenue {$_SESSION["login"]}</h1>";
                 }
             }
         } 
 
     ?>
 
+    <script>
+        setTimeout(function () {
+            window.location.href = "accueil.php";
+        }, 1500);
+    </script>
 </body>
 
 </html>
