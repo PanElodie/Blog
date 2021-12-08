@@ -31,8 +31,21 @@
             margin-left: 30%;
         }
 
-        .com {
+        .log {
+            margin-top: 20px;
             margin-left: 25%;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .date {
+            margin-left: 25%;
+            margin-bottom: 10px;
+            font-style:italic;
+            
+        }
+        .text {
+            margin-left: 25%;
+            margin-bottom: 10px;
         }
 
         .commentaires {
@@ -61,7 +74,7 @@
             </section>";
     ?>
 
-    <button> Commentaires </button>
+    <button class="post_article"> Commentaires </button>
     <section class="commentaires">
         <?php 
             $reqCom = "SELECT * FROM commentaire WHERE ext_billet = $article";
@@ -69,19 +82,19 @@
             $commentaires = $stmt -> fetchAll(PDO::FETCH_ASSOC);
             
             foreach($commentaires as $commentaire){
-                echo "<div class='com'>{$commentaire["texte"]}</div>";
-                echo  "<div class='com'>{$commentaire["date"]}</div>";
                 $reqLog = "SELECT * FROM utilisateur WHERE id_utilisateur = {$commentaire["ext_utilisateur"]}";
                 $stmt = $db -> query($reqLog);
                 $login = $stmt -> fetch(PDO::FETCH_ASSOC);
-                echo  "<div class='com'>{$login["login"]}</div>";
+                echo  "<div class='log'>{$login["login"]}</div>";
+                echo "<div class='date'>{$commentaire["date"]}</div>";
+                echo  "<div class='text'>{$commentaire["texte"]}</div>";
             }
 
             if (isset($_SESSION["id"])){
                 echo ("<form action='traite_commentaire.php' method='GET'>\n
                 <h4>Poster mon commentaire</h4>\n
                 <textarea name='commentaire' rows='10' cols='50' placeholder='Ecrire le commentaire'></textarea><br><br>\n
-                <input type='submit' value='Poster mon commentaire' style='display:block'><br><br>\n
+                <input type='submit' value='Poster mon commentaire' style='display:block'class='post_article'><br><br>\n
                 <input type='hidden' name='id_article' value='". $article ."'>\n
                 </form>");
             } else {

@@ -22,7 +22,7 @@
         <h1>Je remplis et je post !</h1>
       <input type="text" name="titre" placeholder="Titre de l'article"><br><br>
       <textarea name="contenu" rows="10" cols="50" placeholder="Contenu de l'article"></textarea><br><br>
-      <input type="submit" value="Poster mon article" style="display:block">
+      <input type="submit" value="Poster mon article" style="display:block" class="post_article">
     </form>
 
 </body>

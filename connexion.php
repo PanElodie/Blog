@@ -24,7 +24,7 @@
     <form action="traite_connexion.php" method="GET">
         <input type="text" name="login" placeholder="Mon login" autocomplete="username">
         <input type="password" name="mdp" placeholder="Mon mot de passe" autocomplete="current-password">
-        <input type="submit" value="Se connecter">
+        <input type="submit" value="Se connecter" class="post_article">
     </form>
 
     <h2>Vous n'avez pas encore de compte ?</h2>
