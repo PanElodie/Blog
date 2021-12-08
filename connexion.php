@@ -30,6 +30,6 @@
     <h2>Vous n'avez pas encore de compte ?</h2>
     <a href="inscription.php">Je m'inscris</a>
 
-    <a href="accueil.php">Visiter le blog sans m'inscrire</a>
+    <a href="accueil.php" class="no-inscription">Visiter le blog sans m'inscrire</a>
 </body>
 </html>

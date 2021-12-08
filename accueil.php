@@ -23,14 +23,14 @@
 
             foreach($results as $result){
                 echo "<div>\n
-                <a href='article.php?id_article=". $result["id_billet"]."'>{$result["titre"]}</a>
+                <a class='billet' href='article.php?id_article=". $result["id_billet"]."'>{$result["titre"]}</a>
                 </div>";
             }
         ?>
     </div>
         <?php
             if(isset($_SESSION["id"]) && $_SESSION["id"] == 1 && $_SESSION["login"] == 'admin'){
-                echo '<div style="margin-top:20px;"><a href="post_billet.php">Poster un nouvel article</a></div>';
+                echo '<div style="margin-top:20px;"><a href="post_billet.php" class="post_article">Poster un nouvel article</a></div>';
             }
         ?>
 </body>

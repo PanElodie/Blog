@@ -2,8 +2,50 @@
     box-sizing: border-box;
 }
 
+a {
+    text-decoration: none;
+    color: red;
+}
+
+a:hover {
+    color: black;
+}
+
 .connexion, .deconnexion {
     position:absolute;
     top:0;
     right:0;
+    padding: 10px;
+    font-size: 1.5rem;
+}
+
+.billet {
+    color: black;
+    text-align: center;
+    margin: 5px 0;
+    padding: 10px;
+    display: inline-block;
+    border: solid 2px;
+    border-radius: 10px;
+    transition: padding 1s ease;
+}
+
+.billet:hover {
+    padding: 10px 50px;
+}
+
+.post_article {
+    border : solid 2px;
+    padding : 10px;
+    color: red;
+}
+
+.post_article:hover {
+    color : blue;
+    font-weight: bold;
+}
+
+.no-inscription {
+    display: block;
+    margin-top: 20px;
 }
