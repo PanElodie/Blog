@@ -14,42 +14,18 @@
         }
 
         p {
-            width: 50%;
-            margin-left: 25%;
+            width: 55%;
+            min-width: 550px;
+            margin: 20px auto;
         }
 
-        h2,
-        h3 {
-            margin-left: 65%;
-        }
-
-        button {
-            margin-left: 25%;
+        button, input {
+            margin: auto;
+            display: block;
         }
 
         form {
-            margin-left: 30%;
-        }
-
-        .log {
-            margin-top: 20px;
-            margin-left: 25%;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-        .date {
-            margin-left: 25%;
-            margin-bottom: 10px;
-            font-style:italic;
-            
-        }
-        .text {
-            margin-left: 25%;
-            margin-bottom: 10px;
-        }
-
-        .commentaires {
-            display: none;
+            text-align : center;
         }
     </style>
 </head>
@@ -61,22 +37,22 @@
         include 'bouton_co_deco.php';
         
         if (isset($_GET["id_article"])){
+
+            // L'article
             $article = $_GET["id_article"];
             $reqArticle = "SELECT * FROM billet WHERE id_billet = $article";
             $stmt = $db -> query($reqArticle);
             $result = $stmt -> fetch(PDO::FETCH_ASSOC);
-            
-            // COMMENT REMPLACER "ENTER" AVEC BR???
+
             echo "<section class='article'>\n
             <h1>{$result["titre"]}</h1>\n
             <p>{$result["contenu"]}</p>\n
-            <p>Publié le {$result["date"]} </p>\n
-            </section>";
-    ?>
+            <p><em>Publié le {$result["date"]}</em></p>\n
+            </section>\n
+            <button class='post_article'> Voir les commentaires </button>\n
+            <section class='commentaires'>\n";
 
-    <button class="post_article"> Commentaires </button>
-    <section class="commentaires">
-        <?php 
+            // Les commentaires
             $reqCom = "SELECT * FROM commentaire WHERE ext_billet = $article";
             $stmt = $db -> query($reqCom);
             $commentaires = $stmt -> fetchAll(PDO::FETCH_ASSOC);
@@ -85,14 +61,18 @@
                 $reqLog = "SELECT * FROM utilisateur WHERE id_utilisateur = {$commentaire["ext_utilisateur"]}";
                 $stmt = $db -> query($reqLog);
                 $login = $stmt -> fetch(PDO::FETCH_ASSOC);
-                echo  "<div class='log'>{$login["login"]}</div>";
-                echo "<div class='date'>{$commentaire["date"]}</div>";
-                echo  "<div class='text'>{$commentaire["texte"]}</div>";
+                echo  "<div class='commentaire'>\n
+                <span class='log'>{$login["login"]}</span>\n
+                <span class='date'>{$commentaire["date"]}</span>\n
+                <p class='text'>{$commentaire["texte"]}</p>\n
+                </div>";
+
             }
 
+            // Si l'utilisateur est connecté, il peut poster un commentaire
             if (isset($_SESSION["id"])){
                 echo ("<form action='traite_commentaire.php' method='GET'>\n
-                <h4>Poster mon commentaire</h4>\n
+                <h2>Poster mon commentaire</h2>\n
                 <textarea name='commentaire' rows='10' cols='50' placeholder='Ecrire le commentaire'></textarea><br><br>\n
                 <input type='submit' value='Poster mon commentaire' style='display:block'class='post_article'><br><br>\n
                 <input type='hidden' name='id_article' value='". $article ."'>\n
@@ -103,8 +83,10 @@
         };
        
         ?>
-
+       
     </section>
+
+
     <script>
         document.querySelector("button").addEventListener("click", () => {
             var com = document.querySelector('.commentaires');
@@ -114,6 +96,15 @@
                 com.style.display = "block";
             }
         });
+
+        document.querySelector('button').addEventListener('click', e => {
+            let state = document.querySelector('.commentaires').style.display;
+            if (state == 'block'){
+                e.target.innerHTML = 'Cacher les commentaires';
+            } else {
+                e.target.innerHTML = 'Voir les commentaires';
+            }
+        })
     </script>
 </body>
 

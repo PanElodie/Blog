@@ -9,29 +9,35 @@
     <title>Accueil</title>
 </head>
 <body>
-    <h1>Le nom du blog</h1>
-    <div>
-        <?php
-            include 'db_link.php';
-            include 'bouton_co_deco.php';
-            if (isset($_SESSION["id"])){
-                echo "<p>Bienvenue {$_SESSION["login"]}</p>";
-            }
-            $requete = "SELECT * FROM billet";
-            $stmt = $db -> query($requete);
-            $results = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+    <?php
+        include 'db_link.php';
+        include 'bouton_co_deco.php';
 
-            foreach($results as $result){
-                echo "<div>\n
-                <a class='billet' href='article.php?id_article=". $result["id_billet"]."'>{$result["titre"]}</a>
-                </div>";
-            }
-        ?>
+        echo "<h1>Le nom du blog</h1>\n
+        <div>\n";
+
+        if (isset($_SESSION["id"])){
+            echo "<div class='admin-rights'>\n
+            <p>Bienvenue {$_SESSION["login"]}</p>";
+        }
+
+        if(isset($_SESSION["id"]) && $_SESSION["id"] == 1 && $_SESSION["login"] == 'admin'){
+            echo "<div class='button-post-billet'><a href='post_billet.php' class='post_article'>Poster un nouvel article</a></div>\n
+            </div>";
+        }
+        
+        // Les articles et petit aperçu du contenu
+        $requete = "SELECT * FROM billet";
+        $stmt = $db -> query($requete);
+        $results = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($results as $result){
+            echo "<div>\n
+            <a class='billet' href='article.php?id_article=". $result["id_billet"]."'><span class='billet-titre'>{$result["titre"]}</span><br>\n
+            <span>". substr(strip_tags($result["contenu"]), 0, 80)."...</span></a>
+            </div>";
+        }
+    ?>
     </div>
-        <?php
-            if(isset($_SESSION["id"]) && $_SESSION["id"] == 1 && $_SESSION["login"] == 'admin'){
-                echo '<div style="margin-top:20px;"><a href="post_billet.php" class="post_article">Poster un nouvel article</a></div>';
-            }
-        ?>
 </body>
 </html>

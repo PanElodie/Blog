@@ -2,6 +2,14 @@
     box-sizing: border-box;
 }
 
+body {
+    margin-bottom: 50px;
+}
+
+header {
+    height: 70px;
+}
+
 a {
     text-decoration: none;
     color: red;
@@ -16,22 +24,47 @@ a:hover {
     top:0;
     right:0;
     padding: 10px;
-    font-size: 1.5rem;
+}
+
+.no-inscription {
+    display: block;
+    margin-top: 20px;
+}
+
+
+/* Page Accueil */
+.admin-rights {
+    display : flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.button-post-billet {
+    text-align: right;
 }
 
 .billet {
+    width: 55%;
     color: black;
     text-align: center;
-    margin: 5px 0;
-    padding: 10px;
-    display: inline-block;
+    margin: 20px 0;
+    padding: 20px 10px;
+    display: block;
     border: solid 2px;
     border-radius: 10px;
-    transition: padding 1s ease;
+    transition: width 1s ease;
 }
 
 .billet:hover {
-    padding: 10px 50px;
+    width: 65%;
+}
+
+.billet-titre {
+    display: block;
+    color: rgb(48, 48, 252);
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 2px;
 }
 
 .post_article {
@@ -45,7 +78,36 @@ a:hover {
     font-weight: bold;
 }
 
-.no-inscription {
-    display: block;
-    margin-top: 20px;
+
+/* Page Article */
+.commentaires {
+    width: 50%;
+    margin: auto;
+    display: none;
+}
+
+.commentaire {
+    border : solid 1px;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.commentaires p, .commentaires span {
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+}
+
+.commentaire .date, .commentaire .log {
+    display : inline-block;
+    width: 45%;
+}
+
+.log {
+    font-weight: bold;
+}
+
+.date {
+    font-style: italic;
+    text-align: right;
 }

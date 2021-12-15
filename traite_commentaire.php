@@ -13,11 +13,18 @@
 <body>
     <?php 
         include 'db_link.php';
-        $req = "INSERT INTO commentaire VALUES (NULL, :texte, CURRENT_TIMESTAMP, {$_SESSION["id"]}, {$_GET["id_article"]})";
-        $stmt= $db->prepare($req);
-        $stmt->bindParam(':texte',$_GET["commentaire"] , PDO::PARAM_STR); 
-        $stmt->execute();
-        echo "Merci pour votre commentaire !";
+        if (isset($_GET["commentaire"])){
+            if ($_GET["commentaire"] != ""){
+                $req = "INSERT INTO commentaire VALUES (NULL, :texte, CURRENT_TIMESTAMP, {$_SESSION["id"]}, {$_GET["id_article"]})";
+                $stmt= $db->prepare($req);
+                $stmt->bindParam(':texte',$_GET["commentaire"] , PDO::PARAM_STR); 
+                $stmt->execute();
+                echo "Merci pour votre commentaire !";
+            } else {
+                echo "Vous n'avez rien écrit...";
+            }
+        }
+        
     ?>
 
     <script>
