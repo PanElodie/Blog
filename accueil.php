@@ -1,6 +1,6 @@
 <?php session_start();?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +13,7 @@
         include 'db_link.php';
         include 'bouton_co_deco.php';
 
-        echo "<h1>Le nom du blog</h1>\n
+        echo "<h1>Blog PHP, Elodie & Amélie</h1>\n
         <div>\n";
 
         if (isset($_SESSION["id"])){
