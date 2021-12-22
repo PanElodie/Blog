@@ -13,11 +13,11 @@
 <body>
     <?php 
         include 'db_link.php';
-        if (isset($_GET["commentaire"])){
-            if ($_GET["commentaire"] != ""){
-                $req = "INSERT INTO commentaire VALUES (NULL, :texte, CURRENT_TIMESTAMP, {$_SESSION["id"]}, {$_GET["id_article"]})";
+        if (isset($_POST["commentaire"])){
+            if ($_POST["commentaire"] != ""){
+                $req = "INSERT INTO commentaire VALUES (NULL, :texte, CURRENT_TIMESTAMP, {$_SESSION["id"]}, {$_POST["id_article"]})";
                 $stmt= $db->prepare($req);
-                $stmt->bindParam(':texte',$_GET["commentaire"] , PDO::PARAM_STR); 
+                $stmt->bindParam(':texte',$_POST["commentaire"] , PDO::PARAM_STR); 
                 $stmt->execute();
                 echo "Merci pour votre commentaire !";
             } else {
@@ -29,7 +29,7 @@
 
     <script>
         setTimeout(function () {
-            window.location.href = "article.php?id_article=<?= $_GET["id_article"]; ?>";
+            window.location.href = "article.php?id_article=<?= $_POST["id_article"]; ?>";
         }, 1500);
     </script>
 </body>

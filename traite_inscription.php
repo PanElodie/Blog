@@ -18,30 +18,30 @@
 
         $req1 = "SELECT * FROM utilisateur WHERE login = ?";
         $verif = $db -> prepare($req1);
-        $verif -> bindValue(1, $_GET["login"], PDO::PARAM_STR);
+        $verif -> bindValue(1, $_POST["login"], PDO::PARAM_STR);
         $verif -> execute();
 
         $result = $verif -> fetch(PDO::FETCH_ASSOC);
 
-        if (isset($_GET["login"])) {
+        if (isset($_POST["login"])) {
 
-            if ($_GET["login"] == "" || $_GET["mdp"] == "" || $_GET["mdp_check"] == ""){
+            if ($_POST["login"] == "" || $_POST["mdp"] == "" || $_POST["mdp_check"] == ""){
                 header ('Location: inscription.php?error=incomplete');
             } 
             else {
                 if ($result) {
                     header ('Location: inscription.php?error=login');
                 }
-                else if ($_GET["mdp"] != $_GET["mdp_check"]){
+                else if ($_POST["mdp"] != $_POST["mdp_check"]){
                     header ('Location: inscription.php?error=mdp');
                 }
                 else {
                     $req2= "INSERT INTO utilisateur VALUES (NULL,:login,:mdp)";
                 
                     $stmt= $db->prepare($req2);
-                    $stmt->bindParam(':login',$_GET["login"] , PDO::PARAM_STR); 
+                    $stmt->bindParam(':login',$_POST["login"] , PDO::PARAM_STR); 
                     
-                    $hash= password_hash($_GET["mdp"],PASSWORD_DEFAULT);
+                    $hash= password_hash($_POST["mdp"],PASSWORD_DEFAULT);
                     $stmt->bindParam(':mdp',$hash , PDO::PARAM_STR); 
                     $stmt->execute();
 
@@ -52,7 +52,10 @@
                     $_SESSION["login"] = $resultat["login"];
                     $_SESSION["id"] = $resultat["id_utilisateur"];
 
-                    echo "<h1>Bienvenue {$_SESSION["login"]}</h1>";
+                    echo "<main>\n
+                    <h1>Bienvenue {$_SESSION["login"]}</h1>\n
+                    <p>Vous allez être redirigé dans quelques instants vers la page d'accueil</p>\n
+                    </main>";
                 }
             }
         } 

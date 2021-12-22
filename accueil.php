@@ -12,19 +12,22 @@
     <?php
         include 'db_link.php';
         include 'bouton_co_deco.php';
-
+        echo "<main>";
+        
         echo "<h1>Blog PHP, Elodie & Amélie</h1>\n
         <div>\n";
 
         if (isset($_SESSION["id"])){
             echo "<div class='admin-rights'>\n
             <p>Bienvenue {$_SESSION["login"]}</p>";
+
+            if($_SESSION["id"] == 1 && $_SESSION["login"] == 'admin'){
+                echo "<div class='button-post-billet'><a href='post_billet.php' class='post_article'>Poster un nouvel article</a></div>";
+            }
+
+            echo "</div>";
         }
 
-        if(isset($_SESSION["id"]) && $_SESSION["id"] == 1 && $_SESSION["login"] == 'admin'){
-            echo "<div class='button-post-billet'><a href='post_billet.php' class='post_article'>Poster un nouvel article</a></div>\n
-            </div>";
-        }
         
         // Les articles et petit aperçu du contenu
         $requete = "SELECT * FROM billet";
@@ -38,6 +41,7 @@
             </div>";
         }
     ?>
-    </div>
+        </div>
+    </main>
 </body>
 </html>

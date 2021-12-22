@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,9 +10,11 @@
     <link rel="stylesheet" href="styles.css">
     <title>Connexion</title>
 </head>
+
 <body>
-    <h1>Connexion</h1>
-    <?php
+    <main>
+        <h1>Connexion</h1>
+        <?php
            include 'db_link.php';
             if (isset($_GET["error"])){
                 if (($_GET["error"] == 'login')){
@@ -21,15 +24,17 @@
                 }
             }
         ?>
-    <form action="traite_connexion.php" method="GET">
-        <input type="text" name="login" placeholder="Mon login" autocomplete="username">
-        <input type="password" name="mdp" placeholder="Mon mot de passe" autocomplete="current-password">
-        <input type="submit" value="Se connecter" class="post_article">
-    </form>
+        <form action="traite_connexion.php" method="POST">
+            <input type="text" name="login" placeholder="Mon login" autocomplete="username">
+            <input type="password" name="mdp" placeholder="Mon mot de passe" autocomplete="current-password">
+            <input type="submit" value="Se connecter" class="post_article">
+        </form>
 
-    <h2>Vous n'avez pas encore de compte ?</h2>
-    <a href="inscription.php">Je m'inscris</a>
+        <h2>Vous n'avez pas encore de compte ?</h2>
+        <a href="inscription.php">Je m'inscris</a>
 
-    <a href="accueil.php" class="no-inscription">Visiter le blog sans m'inscrire</a>
+        <a href="accueil.php" class="no-inscription">Visiter le blog sans m'inscrire</a>
+    </main>
 </body>
+
 </html>

@@ -11,17 +11,19 @@
 </head>
 
 <body>
-    <?= "<h1>A bientôt {$_SESSION["login"]}</h1>"; ?>
-    <p>Vous allez être redirigé dans quelques secondes.</p>
-    <p>Si cela n'est pas fait, cliquez <a href="connexion.php">ici</a> !</p>
-    <?php
-        $_SESSION = array();
-        session_destroy();
-    ?>
+    <main>
+        <?= "<h1>A bientôt {$_SESSION["login"]}</h1>"; ?>
+        <p>Vous allez être redirigé dans quelques secondes.</p>
+        <p>Si cela n'est pas fait, cliquez <a href="index.php">ici</a> !</p>
+        <?php
+            $_SESSION = array();
+            session_destroy();
+        ?>
+    </main>
 
     <script>
         setTimeout(function () {
-            window.location.href = "connexion.php";
+            window.location.href = "index.php";
         }, 1500);
     </script>
 

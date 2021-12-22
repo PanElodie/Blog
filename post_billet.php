@@ -33,13 +33,13 @@
     <?php 
         include 'db_link.php';
         include 'bouton_co_deco.php';
-        if (isset($_GET["error"])){
-            if ($_GET["error"] == "incomplete"){
+        if (isset($_POST["error"])){
+            if ($_POST["error"] == "incomplete"){
                 echo "Vous n'avez pas rempli tous les champs.";
             }
         }
     ?>
-    <form action="traite_billet.php" method="GET">
+    <form action="traite_billet.php" method="POST">
         <h1>Je remplis et je post !</h1>
         <input type="text" name="titre" placeholder="Titre de l'article"><br>
 

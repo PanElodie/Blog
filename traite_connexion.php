@@ -14,24 +14,24 @@
         $requete = "SELECT * FROM utilisateur WHERE `login` = ?";
 
         $stmt = $db -> prepare($requete);
-        $stmt -> bindValue(1, $_GET["login"], PDO::PARAM_STR);
+        $stmt -> bindValue(1, $_POST["login"], PDO::PARAM_STR);
         $stmt -> execute();
 
         $resultat = $stmt -> fetch(PDO::FETCH_ASSOC);
         
-        if (isset($_GET["login"])) {
+        if (isset($_POST["login"])) {
             if($resultat == false){
-                header('Location:connexion.php?error=login');
+                header('Location:index.php?error=login');
 
             } else {
-                if (password_verify($_GET["mdp"], $resultat["mdp"])) {
+                if (password_verify($_POST["mdp"], $resultat["mdp"])) {
 
                     $_SESSION["id"] = $resultat["id_utilisateur"];
                     $_SESSION["login"] = $resultat["login"];
                     header('Location:accueil.php');
                 } else {
 
-                    header('Location:connexion.php?error=mdp');
+                    header('Location:index.php?error=mdp');
                 }
             }
         }

@@ -1,6 +1,7 @@
 <?php session_start();?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,23 +25,24 @@
             }
         }
     ?>
+    <main>
+        <h1>Inscription</h1>
 
-    <h1>Inscription</h1>
+        <form action="traite_inscription.php" method="POST">
+            <label for="login">Login</label>
+            <input type="text" name="login" autocomplete="username"><br>
 
-    <form action="traite_inscription.php" method="GET">
-        <label for="login">Login</label>
-        <input type="text" name="login" autocomplete="username"><br>
+            <label for="mdp">Mot de passe</label>
+            <input type="password" name="mdp" autocomplete="new-password"><br>
 
-        <label for="mdp">Mot de passe</label>
-        <input type="password" name="mdp" autocomplete="new-password"><br>
+            <label for="mdp_check">Mot de passe</label>
+            <input type="password" name="mdp_check" autocomplete="new-password"><br>
 
-        <label for="mdp_check">Mot de passe</label>
-        <input type="password" name="mdp_check" autocomplete="new-password"><br>
+            <input type="submit" value="S'inscrire">
+        </form>
 
-        <input type="submit" value="S'inscrire">
-    </form>
-    
-    <a href="connexion.php">J'ai déjà un compte</a>
+        <a href="index.php">J'ai déjà un compte</a>
+    </main>
 </body>
 
 </html>

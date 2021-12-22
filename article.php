@@ -27,11 +27,15 @@
         form {
             text-align : center;
         }
+
+        .retour {
+            display: inline;
+        }
     </style>
 </head>
 
 <body>
-    <a href="accueil.php">Retour</a>
+    <!-- <a href="accueil.php">Retour</a> -->
     <?php
         include 'db_link.php';
         include 'bouton_co_deco.php';
@@ -71,14 +75,14 @@
 
             // Si l'utilisateur est connecté, il peut poster un commentaire
             if (isset($_SESSION["id"])){
-                echo ("<form action='traite_commentaire.php' method='GET'>\n
+                echo ("<form action='traite_commentaire.php' method='POST'>\n
                 <h2>Poster mon commentaire</h2>\n
                 <textarea name='commentaire' rows='10' cols='50' placeholder='Ecrire le commentaire'></textarea><br><br>\n
                 <input type='submit' value='Poster mon commentaire' style='display:block'class='post_article'><br><br>\n
                 <input type='hidden' name='id_article' value='". $article ."'>\n
                 </form>");
             } else {
-                echo "<p>Pour poster un commentaire, <a href='connexion.php'>se connecter</a></p>";
+                echo "<p>Pour poster un commentaire, <a href='index.php'>se connecter</a></p>";
             }
         };
        
