@@ -16,7 +16,7 @@
     <?php
         include 'db_link.php';
 
-        $req1 = "SELECT * FROM utilisateur WHERE login = ?";
+        $req1 = "SELECT * FROM blog_utilisateur WHERE login = ?";
         $verif = $db -> prepare($req1);
         $verif -> bindValue(1, $_POST["login"], PDO::PARAM_STR);
         $verif -> execute();
@@ -36,7 +36,7 @@
                     header ('Location: inscription.php?error=mdp');
                 }
                 else {
-                    $req2= "INSERT INTO utilisateur VALUES (NULL,:login,:mdp)";
+                    $req2= "INSERT INTO blog_utilisateur VALUES (NULL,:login,:mdp)";
                 
                     $stmt= $db->prepare($req2);
                     $stmt->bindParam(':login',$_POST["login"] , PDO::PARAM_STR); 
@@ -46,7 +46,7 @@
                     $stmt->execute();
 
                     // INSCRIPTION EN TANT QUE CONNEXION
-                    $req3 = "SELECT * FROM utilisateur ORDER BY id_utilisateur DESC LIMIT 1";
+                    $req3 = "SELECT * FROM blog_utilisateur ORDER BY id_utilisateur DESC LIMIT 1";
                     $stmt_login = $db -> query($req3);
                     $resultat = $stmt_login -> fetch(PDO::FETCH_ASSOC);
                     $_SESSION["login"] = $resultat["login"];

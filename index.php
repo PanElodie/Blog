@@ -23,7 +23,14 @@
                     echo("<script>alert(\"Votre mot de passe n\'est pas correct\")</script>");
                 }
             }
+
+            // Si l'utilisateur est déjà connecté, il n'a pas à accéder à la page de connexion
+            // et est directement redirigé vers la page d'accueil
+            if (isset($_SESSION["id"])){
+                header("Location: accueil.php");
+            }
         ?>
+
         <form action="traite_connexion.php" method="POST">
             <input type="text" name="login" placeholder="Mon login" autocomplete="username">
             <input type="password" name="mdp" placeholder="Mon mot de passe" autocomplete="current-password">

@@ -1,5 +1,5 @@
 <header>
-    <a href="accueil.php" class="retour">Retour</a>
+    <a href="accueil.php" class="retour">Accueil</a>
 <?php 
     if (isset($_SESSION["id"])){
         echo "<a class='deconnexion' href='deconnexion.php'>Se déconnecter</a>" ;

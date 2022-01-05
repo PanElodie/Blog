@@ -15,7 +15,7 @@
         include 'db_link.php';
         if (isset($_POST["commentaire"])){
             if ($_POST["commentaire"] != ""){
-                $req = "INSERT INTO commentaire VALUES (NULL, :texte, CURRENT_TIMESTAMP, {$_SESSION["id"]}, {$_POST["id_article"]})";
+                $req = "INSERT INTO blog_commentaire VALUES (NULL, :texte, CURRENT_TIMESTAMP, {$_SESSION["id"]}, {$_POST["id_article"]})";
                 $stmt= $db->prepare($req);
                 $stmt->bindParam(':texte',$_POST["commentaire"] , PDO::PARAM_STR); 
                 $stmt->execute();

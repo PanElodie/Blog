@@ -16,7 +16,7 @@
         if ($_POST["titre"] == "" || $_POST["contenu"] == ""){
             header ('Location: post_billet.php?error=incomplete');
         } else {
-            $req = "INSERT INTO billet VALUES (NULL, :contenu, CURRENT_TIMESTAMP, :titre)";
+            $req = "INSERT INTO blog_billet VALUES (NULL, :contenu, CURRENT_TIMESTAMP, :titre)";
             $stmt= $db->prepare($req);
             $stmt->bindParam(':contenu',$_POST["contenu"] , PDO::PARAM_STR); 
             $stmt->bindParam(':titre',$_POST["titre"] , PDO::PARAM_STR); 

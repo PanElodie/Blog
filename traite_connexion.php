@@ -11,7 +11,7 @@
 <body>
     <?php 
         include 'db_link.php';
-        $requete = "SELECT * FROM utilisateur WHERE `login` = ?";
+        $requete = "SELECT * FROM blog_utilisateur WHERE `login` = ?";
 
         $stmt = $db -> prepare($requete);
         $stmt -> bindValue(1, $_POST["login"], PDO::PARAM_STR);

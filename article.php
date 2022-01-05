@@ -35,7 +35,6 @@
 </head>
 
 <body>
-    <!-- <a href="accueil.php">Retour</a> -->
     <?php
         include 'db_link.php';
         include 'bouton_co_deco.php';
@@ -43,9 +42,10 @@
         if (isset($_GET["id_article"])){
 
             // L'article
-            $article = $_GET["id_article"];
-            $reqArticle = "SELECT * FROM billet WHERE id_billet = $article";
-            $stmt = $db -> query($reqArticle);
+            $reqArticle = "SELECT * FROM blog_billet WHERE id_billet = :article";
+            $stmt = $db -> prepare($reqArticle);
+            $stmt -> bindValue(':article', $_GET["id_article"], PDO::PARAM_INT);
+            $stmt -> execute();
             $result = $stmt -> fetch(PDO::FETCH_ASSOC);
 
             echo "<section class='article'>\n
@@ -57,12 +57,12 @@
             <section class='commentaires'>\n";
 
             // Les commentaires
-            $reqCom = "SELECT * FROM commentaire WHERE ext_billet = $article";
+            $reqCom = "SELECT * FROM blog_commentaire WHERE ext_billet = $article";
             $stmt = $db -> query($reqCom);
             $commentaires = $stmt -> fetchAll(PDO::FETCH_ASSOC);
             
             foreach($commentaires as $commentaire){
-                $reqLog = "SELECT * FROM utilisateur WHERE id_utilisateur = {$commentaire["ext_utilisateur"]}";
+                $reqLog = "SELECT * FROM blog_utilisateur WHERE id_utilisateur = {$commentaire["ext_utilisateur"]}";
                 $stmt = $db -> query($reqLog);
                 $login = $stmt -> fetch(PDO::FETCH_ASSOC);
                 echo  "<div class='commentaire'>\n
@@ -92,6 +92,7 @@
 
 
     <script>
+        // Cacher ou afficher les commentaires
         document.querySelector("button").addEventListener("click", () => {
             var com = document.querySelector('.commentaires');
             if (com.style.display == "block") {

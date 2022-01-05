@@ -7,17 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet"
-        type="text/css" />
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js">
-    </script>
+    <!-- L'API utilisé pour l'éditeur de texte -->
+    <script src="https://cdn.tiny.cloud/1/m9w99ohm04gcyht4x4p74yctlx7oqrpmxnccas8dnfvz1vvw/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
     <title>Billet</title>
     <style>
-        .fr-box.fr-basic {
-            width: 60%;
-            margin: auto;
-        }
-
         form {
             text-align: center;
         }
@@ -25,11 +19,13 @@
         input {
             margin: 20px auto;
         }
+        .retour {
+            display: inline;
+        }
     </style>
 </head>
 
 <body>
-    <a href="accueil.php">Retour</a>
     <?php 
         include 'db_link.php';
         include 'bouton_co_deco.php';
@@ -43,8 +39,7 @@
         <h1>Je remplis et je post !</h1>
         <input type="text" name="titre" placeholder="Titre de l'article"><br>
 
-        <!-- La fonctionnalité qui permet de poster des médias (autres que du texte) n'est pas utilisable -->
-        <div><textarea id="text" name="contenu" rows="10" cols="50" placeholder="Contenu de l'article"></textarea></div>
+        <textarea id="text" name="contenu" rows="30" cols="30" placeholder="Contenu de l'article"></textarea>
         <br>
         <input type="submit" value="Poster mon article" style="display:block" class="post_article">
     </form>
@@ -52,7 +47,10 @@
 </body>
 
 <script>
-    var editor = new FroalaEditor('#text')
+    // Script pour inclure l'éditeur de texte dans le textarea
+    tinymce.init({
+      selector: '#text'
+    });
 </script>
 
 </html>

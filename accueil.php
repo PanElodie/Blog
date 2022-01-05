@@ -1,6 +1,7 @@
 <?php session_start();?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="styles.css">
     <title>Accueil</title>
 </head>
+
 <body>
     <?php
         include 'db_link.php';
@@ -15,7 +17,8 @@
         echo "<main>";
         
         echo "<h1>Blog PHP, Elodie & Amélie</h1>\n
-        <div>\n";
+        <section>\n
+        <h2>Articles les plus récents</h2>\n";
 
         if (isset($_SESSION["id"])){
             echo "<div class='admin-rights'>\n
@@ -29,19 +32,40 @@
         }
 
         
-        // Les articles et petit aperçu du contenu
-        $requete = "SELECT * FROM billet";
-        $stmt = $db -> query($requete);
+        // Les 3 articles les plus récents et un petit aperçu de leur contenu
+        $req1 = "SELECT * FROM blog_billet ORDER BY id_billet DESC LIMIT 3";
+        $stmt = $db -> query($req1);
         $results = $stmt -> fetchAll(PDO::FETCH_ASSOC);
 
         foreach($results as $result){
             echo "<div>\n
-            <a class='billet' href='article.php?id_article=". $result["id_billet"]."'><span class='billet-titre'>{$result["titre"]}</span><br>\n
-            <span>". substr(strip_tags($result["contenu"]), 0, 80)."...</span></a>
+            <a class='billet' href='article.php?id_article=". $result["id_billet"]."'>\n
+            <span class='billet-titre'>{$result["titre"]}</span><span class='billet-date'>{$result["date"]}</span><br>\n
+            <span>". substr(strip_tags($result["contenu"]), 0, 150)."...</span></a>
             </div>";
         }
     ?>
-        </div>
+    </section>
+
+    <section>
+        <h2>Archives</h2>
+        <?php
+            $req2 = "SELECT * FROM blog_billet ORDER BY id_billet DESC LIMIT 1000000 OFFSET 3";
+            $stmt = $db -> query($req2);
+            $results2 = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+            foreach($results2 as $result){
+                echo "<div>\n
+                <a class='billet' href='article.php?id_article=". $result["id_billet"]."'>\n
+                <span class='billet-titre'>{$result["titre"]}</span><span class='billet-date'>{$result["date"]}</span><br>\n
+                <span>". substr(strip_tags($result["contenu"]), 0, 150)."...</span></a>
+                </div>";
+            }
+            ?>
+
+    </section>
+    
     </main>
 </body>
+
 </html>
