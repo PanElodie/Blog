@@ -15,7 +15,7 @@
     <main>
         <h1>Connexion</h1>
         <?php
-           include 'db_link.php';
+           include 'link.php';
             if (isset($_GET["error"])){
                 if (($_GET["error"] == 'login')){
                     echo("<script>alert(\"Votre login n\'est pas correct\")</script>");

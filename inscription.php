@@ -12,7 +12,7 @@
 
 <body>
     <?php
-        include 'db_link.php';
+        include 'link.php';
 
         if (isset($_GET["error"])){
             if ($_GET["error"] == 'login'){

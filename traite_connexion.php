@@ -10,7 +10,7 @@
 </head>
 <body>
     <?php 
-        include 'db_link.php';
+        include 'link.php';
         $requete = "SELECT * FROM blog_utilisateur WHERE `login` = ?";
 
         $stmt = $db -> prepare($requete);

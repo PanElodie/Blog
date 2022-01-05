@@ -11,7 +11,7 @@
 
 <body>
     <?php 
-        include 'db_link.php';
+        include 'link.php';
 
         if ($_POST["titre"] == "" || $_POST["contenu"] == ""){
             header ('Location: post_billet.php?error=incomplete');

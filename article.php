@@ -36,7 +36,7 @@
 
 <body>
     <?php
-        include 'db_link.php';
+        include 'link.php';
         include 'bouton_co_deco.php';
         
         if (isset($_GET["id_article"])){
